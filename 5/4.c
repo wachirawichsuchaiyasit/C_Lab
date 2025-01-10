@@ -1,56 +1,26 @@
 #include <stdio.h>
 
-int Find(int n, int *data)
-{
-    int a, b, c;
-
-    // สมการคือ a^2 + b^2 = c^2
-    // n = a + b + c | a + b + c = n
-
-    for (a = 1; a < n; a++)
-    {
-
-        // หา b จร้า
-        for (b = a + 1; b < n; b++)
-        {
-
-            // หา c จั้ฟ
-            c = n - (a + b);
-
-            if (c > b)
-            {
-
-                if ((a * a + b * b) == c * c)
-                {
-                    data[0] = a;
-                    data[1] = b;
-                    data[2] = c;
-                    return 0;
-                }
-            }
-        }
-    }
-
-    return 1;
-}
-
 int main()
 {
 
-    int n = 0;
-    int data[3] = {0, 0, 0};
-
+    printf("Enter n: ");
+    int n;
     scanf("%d", &n);
 
-    int error = Find(n, data);
+    double result = 0;
 
-    if (error)
+    for (int i = 0; i < n; i++)
     {
-        printf("No triple found.");
-        return 1;
+        if (i % 2 == 0)
+        {
+            result += 4.0 / (2 * i + 1);
+        }
+        else
+        {
+            result -= 4.0 / (2 * i + 1);
+        }
     }
 
-    printf("%d %d %d", data[0], data[1], data[2]);
-
+    printf("%.10f", result);
     return 0;
 }
