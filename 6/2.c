@@ -2,34 +2,32 @@
 #include <stdlib.h>
 
 unsigned long *fibo_array(unsigned int n, double *golden_ratio) {
-    // จองพื้นที่
-    unsigned long *fibo_data = (unsigned long *) malloc ( sizeof(unsigned long ) * n);
-    // คำนวณ
-    for (int i = 0 ; i < n ; i ++ ) {
-        printf("this is a i %d\n",i);
-        if ( i > 1) {
-            fibo_data[i] = fibo_data[i-1] + fibo_data[i-2]; 
-        } else {
-            fibo_data[i] = i ;
-        }
-        printf("assigement value %lu\n",fibo_data[i]);
-    }
 
-    unsigned long n_fibo = fibo_data[n-2] + fibo_data[n-1];
-    unsigned long lastest_fibo = n_fibo + fibo_data[n-1];
-    printf("%lu %lu\n",n_fibo,lastest_fibo);
-    *golden_ratio = (double) lastest_fibo / n_fibo ;
-    
-    return fibo_data;
+    unsigned long *fib_array = (unsigned long *)malloc((n + 2) * sizeof(unsigned long));
+
+    fib_array[0] = 0; 
+    fib_array[1] = 1; 
+    for (unsigned int i = 2; i < n + 2; i++) 
+        fib_array[i] = fib_array[i - 1] + fib_array[i - 2];
+
+    *golden_ratio = (double)fib_array[n + 1] / (double)fib_array[n];
+
+    return fib_array;
 }
+
 
 int main() {
     unsigned int n = 10 ;
     double golden_ratio ;
 
-    fibo_array(n,&golden_ratio);
+    unsigned long *a = fibo_array(n,&golden_ratio);
 
-    printf("%f",golden_ratio);
+    for ( int i = 0 ; i < n + 2 ; i ++ ) {
+        printf("%d , %lu\n",i,a[i]);
+    }
+
 
     return 0 ;
 }
+
+
