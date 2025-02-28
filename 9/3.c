@@ -24,7 +24,7 @@ int main()
         scanf("%lf", &points[i].y);
     }
 
-    printf("Lenght:\n");
+    printf("Length:\n");
 
     double dX, dY, distance;
 
